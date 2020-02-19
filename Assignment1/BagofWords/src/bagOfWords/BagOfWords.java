@@ -4,6 +4,7 @@ import java.io.*;
 import java.util.*;
 
 public class BagOfWords {
+	//test
 	//Variables needed everywhere
     static String text_file_name;
     static ArrayList<String> list = new ArrayList<String>();

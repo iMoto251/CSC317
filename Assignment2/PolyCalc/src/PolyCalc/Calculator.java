@@ -29,9 +29,6 @@ public class Calculator {
         	System.out.print("1. Addition\n2. Multiplication\n3. Evaluation\n4. Derivative\n5. Exit\nEnter Choice: ");
         	selection = choice.nextInt();
 		}
-		
-		
 		choice.close();
 	}
-	
 }

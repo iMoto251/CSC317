@@ -6,5 +6,27 @@ public class PolyTerm {
 		// TODO Auto-generated method stub
 
 	}
-
+	
+	public void add(PolyTerm pt) {
+		
+	}
+	
+	public void mult(PolyTerm pt) {
+		
+	}
+	
+	//I don't think this is right, but I'm too lazy to change it right now
+	public <Scalar> void evaluate(Scalar scalar) {
+		
+	}
+	
+	public void derivative() {
+		
+	}
+	
+	public boolean equals(PolyTerm pt) {
+		
+		return false;
+	}
+	
 }

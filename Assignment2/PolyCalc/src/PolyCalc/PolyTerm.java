@@ -1,8 +1,6 @@
 package PolyCalc;
 
 public class PolyTerm {
-
-	//public static void main(String[] args) {}
 	
 	boolean canAdd(PolyTerm pt) {
 		

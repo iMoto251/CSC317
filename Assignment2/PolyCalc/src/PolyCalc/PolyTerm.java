@@ -19,12 +19,10 @@ public class PolyTerm {
 		return pt;
 	}
 	
-	//I don't think this is right, but I'm too lazy to change it right now
 	Scalar evaluate(Scalar scalar) {
-		Scalar result = null;
 		
-		return result;
 		
+		return scalar;
 	}
 	
 	PolyTerm derivative() {

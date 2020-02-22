@@ -3,40 +3,27 @@ package PolyCalc;
 
 public class Polynomial {
 
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
+	Polynomial add(Polynomial poly) {
+		return poly;
 	}
 	
-	public String add(Polynomial poly) {
-		String addSolution = null;
-		System.out.print("Enter first polynomial: ");
-		
-		
-		
-		return addSolution;
+	Polynomial mult(Polynomial poly) {
+		return poly;
 	}
 	
-	public void mult(Polynomial poly) {
-		
-	}
-	//I don't think this is right, but I'm too lazy to change it right now
-	public <Scalar> void evaluate(Scalar scalar) {
-		
+	Scalar evaluate(Scalar scalar) {
+		return scalar;
 	}
 	
-	public void derivative() {
-		
-	}
-	
-	public String toString() {
-		
-		
+	Polynomial derivative() {
 		return null;
 	}
 	
-	public boolean equals(Polynomial poly) {
-		
+	public String toString() {
+		return null;
+	}
+	
+	boolean equals(Polynomial poly) {
 		return false;
 	}
 

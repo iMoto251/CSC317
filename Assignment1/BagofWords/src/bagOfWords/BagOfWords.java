@@ -54,11 +54,14 @@ public class BagOfWords {
 			while (words.hasNext()) {
 				list.add(words.next());
 			}  
+			words.close();
 		}
 			//no file exists
 		else {
 			System.out.println("File does not exist");
 		}
+		
+		fileName.close();
     }
     
     

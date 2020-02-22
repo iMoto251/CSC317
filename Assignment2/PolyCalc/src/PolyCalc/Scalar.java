@@ -3,24 +3,30 @@ package PolyCalc;
 public class Scalar {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
-	}
-	
-	public void add(Scalar s) {
 		
 	}
 	
-	public void mult(Scalar s) {
+	Scalar add(Scalar s) {
 		
+		
+		return s;
 	}
 	
-	public void pow(int exp) {
+	Scalar mult(Scalar s) {
 		
+		return s;
 	}
 	
-	public void neg() {
+	Scalar pow(int exp) {
 		
+		
+		return null;
+	}
+	
+	Scalar neg() {
+		
+		
+		return null;
 	}
 	
 	public boolean equals(Scalar s) {

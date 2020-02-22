@@ -1,5 +1,6 @@
 package PolyCalc;
 
+
 public class Polynomial {
 
 	public static void main(String[] args) {
@@ -7,8 +8,13 @@ public class Polynomial {
 
 	}
 	
-	public void add(Polynomial poly) {
+	public String add(Polynomial poly) {
+		String addSolution = null;
+		System.out.print("Enter first polynomial: ");
 		
+		
+		
+		return addSolution;
 	}
 	
 	public void mult(Polynomial poly) {

@@ -22,8 +22,7 @@ public class Calculator {
 					break;
 			case 4: System.out.println("C4");
 					break;
-			default:
-					System.out.println("Invalid choice");
+			default: System.out.println("Invalid choice");
 					break;
 			}
 			//asks for selection to loop around to the top if the switch

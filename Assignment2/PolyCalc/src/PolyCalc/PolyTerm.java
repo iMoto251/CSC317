@@ -16,7 +16,12 @@ public class PolyTerm {
 	}
 	
 	//I don't think this is right, but I'm too lazy to change it right now
-	public <Scalar> void evaluate(Scalar scalar) {
+	public <Scalar> int evaluate(Scalar scalar) {
+		int result = 0;
+		
+		
+		
+		return result;
 		
 	}
 	

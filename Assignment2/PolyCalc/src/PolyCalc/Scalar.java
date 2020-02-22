@@ -2,9 +2,8 @@ package PolyCalc;
 
 public class Scalar {
 
-	public static void main(String[] args) {
-		
-	}
+	//public static void main(String[] args) {}
+	
 	
 	Scalar add(Scalar s) {
 		

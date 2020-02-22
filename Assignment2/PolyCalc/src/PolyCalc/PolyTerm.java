@@ -2,34 +2,38 @@ package PolyCalc;
 
 public class PolyTerm {
 
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
+	//public static void main(String[] args) {}
+	
+	boolean canAdd(PolyTerm pt) {
+		
+		return false;
 	}
 	
-	public void add(PolyTerm pt) {
+	PolyTerm add(PolyTerm pt) {
 		
+		return pt;
 	}
 	
-	public void mult(PolyTerm pt) {
+	PolyTerm mult(PolyTerm pt) {
 		
+		return pt;
 	}
 	
 	//I don't think this is right, but I'm too lazy to change it right now
-	public <Scalar> int evaluate(Scalar scalar) {
-		int result = 0;
-		
-		
+	Scalar evaluate(Scalar scalar) {
+		Scalar result = null;
 		
 		return result;
 		
 	}
 	
-	public void derivative() {
+	PolyTerm derivative() {
 		
+		
+		return null;
 	}
 	
-	public boolean equals(PolyTerm pt) {
+	boolean equals(PolyTerm pt) {
 		
 		return false;
 	}

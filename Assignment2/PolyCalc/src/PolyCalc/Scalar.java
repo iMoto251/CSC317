@@ -4,8 +4,33 @@ public class Scalar {
 
     private double value;
     private String indication;
-
-
+	
+	public Scalar add(Scalar s) {
+        return valueCheck(((Scalar) s).getValue() + getValue());
+    }
+	
+	public Scalar mult(Scalar s) {
+        return valueCheck(((Scalar) s).getValue() * getValue());
+    }
+	
+	public Scalar pow(int exponent) {
+        double newValue = value;
+        while (exponent != 1) {
+            newValue = newValue * value;
+            exponent = exponent - 1;
+        }
+        return valueCheck(newValue);
+    }
+	
+	public Scalar neg() {
+        return valueCheck(getValue() * (-1));
+    }
+	
+	public boolean equals(Scalar s) {
+        return ((Scalar) s).getValue() == getValue();
+    }
+	
+	//Added helpers
     public Scalar(double value, String indication) {
         this.value = value;
         this.indication = indication;
@@ -19,32 +44,7 @@ public class Scalar {
         this.value = value;
     }
 
-    public Scalar add(Scalar s) {
-        return valueCheck(((Scalar) s).getValue() + getValue());
-    }
-
-    public Scalar mul(Scalar s) {
-        return valueCheck(((Scalar) s).getValue() * getValue());
-    }
-
-    public Scalar pow(int exponent) {
-        double newValue = value;
-        while (exponent != 1) {
-            newValue = newValue * value;
-            exponent = exponent - 1;
-        }
-        return valueCheck(newValue);
-    }
-
-    public Scalar neg() {
-        return valueCheck(getValue() * (-1));
-    }
-
-    public boolean equals(Scalar s) {
-        return ((Scalar) s).getValue() == getValue();
-    }
-
-    public Scalar mulInt(int exponent) {
+    public Scalar multInt(int exponent) {
         return valueCheck(getValue() * exponent);
     }
 

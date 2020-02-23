@@ -52,7 +52,7 @@ public class Calculator {
 
                             p_1 = new Polynomial(new Convertor(poly_1, R).stringToPolynomial());
                             p_2 = new Polynomial(new Convertor(poly_2, R).stringToPolynomial());
-                            System.out.println(p_1.mul(p_2));
+                            System.out.println(p_1.mult(p_2));
                             System.out.println();
                             break;
                 }
@@ -80,7 +80,7 @@ public class Calculator {
                             System.out.println("The derivative polynomial is:");
 
                             p_1 = new Polynomial(new Convertor(poly_1, R).stringToPolynomial());
-                            System.out.println(p_1.derivate());
+                            System.out.println(p_1.derivative());
                             System.out.println();
                             break;
                 }

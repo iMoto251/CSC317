@@ -5,7 +5,47 @@ public class Polyterm {
     private Scalar scalar;
     private int exponent;
     private String indication;
+	
+	public boolean canAdd(Polyterm pt) {
+        return pt.getExponent() == exponent;
+    }
 
+    public Polyterm add(Polyterm pt) {
+        if (canAdd(pt)) {
+            Polyterm output = new Polyterm(pt.getScalar().add(scalar), exponent);
+            return output;
+        } else {
+            return this;
+        }
+    }
+	
+	public Polyterm mult(Polyterm pt) {
+
+        Polyterm output = new Polyterm(getScalar().mult(pt.getScalar()), getExponent() + pt.getExponent());
+        return output;
+    }
+	
+	public Scalar evaluate(Scalar scalar) {
+        Scalar output = (scalar.pow(getExponent())).mult(getScalar());
+        return output;
+    }
+	
+	public Polyterm derivative() {
+        Polyterm output;
+        if (getExponent() != 0) {
+            output = new Polyterm(getScalar().multInt(exponent), exponent - 1);
+        } else {
+            output = new Polyterm(getScalar().multInt(0), 1);
+        }
+        return output;
+    }
+	
+	public boolean equals(Polyterm polyTerm) {
+        return (getScalar().equals(polyTerm.getScalar()) &
+                getExponent() == polyTerm.getExponent());
+    }
+	
+	//Added helpers
     public Polyterm(Scalar scalar, int exponent) {
         this.scalar = scalar;
         this.exponent = exponent;
@@ -28,47 +68,8 @@ public class Polyterm {
         this.exponent = exponent;
     }
 
-    public boolean canAdd(Polyterm pt) {
-        return pt.getExponent() == exponent;
-    }
-
-    public Polyterm add(Polyterm pt) {
-        if (canAdd(pt)) {
-            Polyterm output = new Polyterm(pt.getScalar().add(scalar), exponent);
-            return output;
-        } else {
-            return this;
-        }
-    }
-
     public String getIndication() {
         return this.indication;
-    }
-
-    public Polyterm mul(Polyterm pt) {
-
-        Polyterm output = new Polyterm(getScalar().mul(pt.getScalar()), getExponent() + pt.getExponent());
-        return output;
-    }
-
-    public Scalar evaluate(Scalar scalar) {
-        Scalar output = (scalar.pow(getExponent())).mul(getScalar());
-        return output;
-    }
-
-    public Polyterm derivate() {
-        Polyterm output;
-        if (getExponent() != 0) {
-            output = new Polyterm(getScalar().mulInt(exponent), exponent - 1);
-        } else {
-            output = new Polyterm(getScalar().mulInt(0), 1);
-        }
-        return output;
-    }
-
-    public boolean equals(Polyterm polyTerm) {
-        return (getScalar().equals(polyTerm.getScalar()) &
-                getExponent() == polyTerm.getExponent());
     }
 
     public int compareTo(Polyterm poly) {

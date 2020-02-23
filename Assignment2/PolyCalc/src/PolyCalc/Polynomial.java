@@ -5,20 +5,8 @@ import java.util.*;
 public class Polynomial {
 
     private List<Polyterm> listP;
-
-    public Polynomial(List<Polyterm> listP) {
-        this.listP = listP;
-    }
-
-    public List<Polyterm> getListP() {
-        return listP;
-    }
-
-    public void setCollection(List<Polyterm> listP) {
-        this.listP = listP;
-    }
-
-    public Polynomial add(Polynomial poly) {
+	
+	public Polynomial add(Polynomial poly) {
         List<Polyterm> output = new ArrayList<>();
         output.addAll(this.getListP());
         output.addAll(poly.getListP());
@@ -26,18 +14,18 @@ public class Polynomial {
         Polynomial p = unite(output);
         return p;
     }
-
-    public Polynomial mul(Polynomial poly) {
+	
+	public Polynomial mult(Polynomial poly) {
         List<Polyterm> output = new ArrayList<>();
         for (Polyterm x : poly.getListP()) {
             for (Polyterm y : getListP()) {
-                output.add(x.mul(y));
+                output.add(x.mult(y));
             }
         }
         return (unite(output));
     }
-
-    public Scalar evaluate(Scalar scalar) {
+	
+	public Scalar evaluate(Scalar scalar) {
         if (getListP().size() == 0) {
             return null;
         } else {
@@ -48,11 +36,11 @@ public class Polynomial {
             return s;
         }
     }
-
-    public Polynomial derivate() {
+	
+	public Polynomial derivative() {
         List<Polyterm> list = new ArrayList<>();
         for (int i = 0; i < getListP().size(); i = i + 1) {
-            Polyterm p = getListP().get(i).derivate();
+            Polyterm p = getListP().get(i).derivative();
             if (!(p.getScalar().toString().equals("0") | (p.getScalar().toString().equals("0.0")))) {
                 list.add(p);
             }
@@ -60,8 +48,8 @@ public class Polynomial {
         Polynomial p = unite(list);
         return p;
     }
-
-    public String toString() {
+	
+	public String toString() {
 
         String s = "";
         for (int i = 0; i < getListP().size(); i = i + 1) {
@@ -84,8 +72,8 @@ public class Polynomial {
         }
         return s;
     }
-
-    public boolean equals(Polynomial poly) {
+	
+	public boolean equals(Polynomial poly) {
         boolean isEqual = true;
         if (poly.getListP().size() != getListP().size()) {
             isEqual = false;
@@ -96,6 +84,19 @@ public class Polynomial {
             }
         }
         return isEqual;
+    }
+	
+	//Added helpers
+    public Polynomial(List<Polyterm> listP) {
+        this.listP = listP;
+    }
+
+    public List<Polyterm> getListP() {
+        return listP;
+    }
+
+    public void setCollection(List<Polyterm> listP) {
+        this.listP = listP;
     }
 
     public Polynomial unite(List<Polyterm> listP) { //this function unite all the same exponents in the list and return a sorted polinomial

@@ -22,25 +22,25 @@ public class Convertor {
     }
 
     public List<Polyterm> stringToPolynomial() {
-        String[] newPolinom = getPoly().split("(?=[+-])");
+        String[] newPoli = getPoly().split("(?=[+-])");
         List<Polyterm> listP = new ArrayList<>();
         String negN = "-";
         String posN = "+";
         
-            for (int i = 0; i < newPolinom.length; i = i + 1) {
+            for (int i = 0; i < newPoli.length; i = i + 1) {
 
                 // with X
 
-                if (newPolinom[i].contains("x")) {
+                if (newPoli[i].contains("x")) {
 
                     // negative number
 
-                    if (newPolinom[i].charAt(0) == '-') {
+                    if (newPoli[i].charAt(0) == '-') {
 
-                        if (!newPolinom[i].contains("/")) {
+                        if (!newPoli[i].contains("/")) {
 
-                            String scalar = newPolinom[i].substring(0, newPolinom[i].indexOf('x'));
-                            String exponent = newPolinom[i].substring(newPolinom[i].indexOf('^') + 1);
+                            String scalar = newPoli[i].substring(0, newPoli[i].indexOf('x'));
+                            String exponent = newPoli[i].substring(newPoli[i].indexOf('^') + 1);
 
                             if(exponent.contains("x")){ exponent = "1"; }
 
@@ -54,11 +54,11 @@ public class Convertor {
                             listP.add(poly);
 
                         }
-                        else if (newPolinom[i].indexOf('/')!=newPolinom[i].length()-1) {
+                        else if (newPoli[i].indexOf('/')!=newPoli[i].length()-1) {
 
-                            String numerator = newPolinom[i].substring(0, newPolinom[i].indexOf('/'));
-                            String denominator = newPolinom[i].substring(newPolinom[i].indexOf('/') + 1, newPolinom[i].indexOf('x'));
-                            String exponent = newPolinom[i].substring(newPolinom[i].indexOf('^') + 1);
+                            String numerator = newPoli[i].substring(0, newPoli[i].indexOf('/'));
+                            String denominator = newPoli[i].substring(newPoli[i].indexOf('/') + 1, newPoli[i].indexOf('x'));
+                            String exponent = newPoli[i].substring(newPoli[i].indexOf('^') + 1);
 
                             if(exponent.contains("x")){ exponent = "1"; }
 
@@ -71,9 +71,9 @@ public class Convertor {
                             listP.add(poly);
                         }
                         else{
-                            String numerator = newPolinom[i].substring(0, newPolinom[i].indexOf('/'));
-                            String denominator = newPolinom[i+1].substring(0, newPolinom[i+1].indexOf('x'));
-                            String exponent = newPolinom[i+1].substring(newPolinom[i+1].indexOf('^') + 1);
+                            String numerator = newPoli[i].substring(0, newPoli[i].indexOf('/'));
+                            String denominator = newPoli[i+1].substring(0, newPoli[i+1].indexOf('x'));
+                            String exponent = newPoli[i+1].substring(newPoli[i+1].indexOf('^') + 1);
 
                             if(exponent.contains("x")){ exponent = "1"; }
 
@@ -96,10 +96,10 @@ public class Convertor {
 
                             // not the first number
 
-                            if (!newPolinom[i].contains("/")) {
+                            if (!newPoli[i].contains("/")) {
 
-                                String scalar = newPolinom[i].substring(1, newPolinom[i].indexOf('x'));
-                                String exponent = newPolinom[i].substring(newPolinom[i].indexOf('^') + 1);
+                                String scalar = newPoli[i].substring(1, newPoli[i].indexOf('x'));
+                                String exponent = newPoli[i].substring(newPoli[i].indexOf('^') + 1);
 
                                 if(exponent.contains("x")){ exponent = "1"; }
 
@@ -113,11 +113,11 @@ public class Convertor {
                                 listP.add(poly);
 
                             }
-                            else if (newPolinom[i].indexOf('/')!=newPolinom[i].length()-1){
+                            else if (newPoli[i].indexOf('/')!=newPoli[i].length()-1){
 
-                                String numerator = newPolinom[i].substring(1, newPolinom[i].indexOf('/'));
-                                String denominator = newPolinom[i].substring(newPolinom[i].indexOf('/') + 1, newPolinom[i].indexOf('x'));
-                                String exponent = newPolinom[i].substring(newPolinom[i].indexOf('^') + 1);
+                                String numerator = newPoli[i].substring(1, newPoli[i].indexOf('/'));
+                                String denominator = newPoli[i].substring(newPoli[i].indexOf('/') + 1, newPoli[i].indexOf('x'));
+                                String exponent = newPoli[i].substring(newPoli[i].indexOf('^') + 1);
 
                                 double newNumerator = Double.parseDouble(numerator);
                                 double newDenominator = Double.parseDouble(denominator);
@@ -129,9 +129,9 @@ public class Convertor {
 
                             }
                             else{
-                                String numerator = newPolinom[i].substring(0, newPolinom[i].indexOf('/'));
-                                String denominator = newPolinom[i+1].substring(0, newPolinom[i+1].indexOf('x'));
-                                String exponent = newPolinom[i+1].substring(newPolinom[i+1].indexOf('^') + 1);
+                                String numerator = newPoli[i].substring(0, newPoli[i].indexOf('/'));
+                                String denominator = newPoli[i+1].substring(0, newPoli[i+1].indexOf('x'));
+                                String exponent = newPoli[i+1].substring(newPoli[i+1].indexOf('^') + 1);
 
                                 if(exponent.contains("x")){ exponent = "1"; }
 
@@ -148,10 +148,10 @@ public class Convertor {
 
                             // first number
 
-                            if (!newPolinom[i].contains("/")) {
+                            if (!newPoli[i].contains("/")) {
 
-                                String scalar = newPolinom[i].substring(0, newPolinom[i].indexOf('x'));
-                                String exponent = newPolinom[i].substring(newPolinom[i].indexOf('^') + 1);
+                                String scalar = newPoli[i].substring(0, newPoli[i].indexOf('x'));
+                                String exponent = newPoli[i].substring(newPoli[i].indexOf('^') + 1);
 
                                 if(exponent.contains("x")){ exponent = "1"; }
 
@@ -164,11 +164,11 @@ public class Convertor {
                                 Polyterm poly = new Polyterm(s, newExponent);
                                 listP.add(poly);
 
-                            } else if (newPolinom[i].indexOf('/')!=newPolinom[i].length()-1){
+                            } else if (newPoli[i].indexOf('/')!=newPoli[i].length()-1){
 
-                                String numerator = newPolinom[i].substring(0, newPolinom[i].indexOf('/'));
-                                String denominator = newPolinom[i].substring(newPolinom[i].indexOf('/') + 1, newPolinom[i].indexOf('x'));
-                                String exponent = newPolinom[i].substring(newPolinom[i].indexOf('^') + 1);
+                                String numerator = newPoli[i].substring(0, newPoli[i].indexOf('/'));
+                                String denominator = newPoli[i].substring(newPoli[i].indexOf('/') + 1, newPoli[i].indexOf('x'));
+                                String exponent = newPoli[i].substring(newPoli[i].indexOf('^') + 1);
 
                                 if(exponent.contains("x")){ exponent = "1"; }
 
@@ -182,9 +182,9 @@ public class Convertor {
 
                             }
                             else{
-                                String numerator = newPolinom[i].substring(0, newPolinom[i].indexOf('/'));
-                                String denominator = newPolinom[i+1].substring(0, newPolinom[i+1].indexOf('x'));
-                                String exponent = newPolinom[i+1].substring(newPolinom[i+1].indexOf('^') + 1);
+                                String numerator = newPoli[i].substring(0, newPoli[i].indexOf('/'));
+                                String denominator = newPoli[i+1].substring(0, newPoli[i+1].indexOf('x'));
+                                String exponent = newPoli[i+1].substring(newPoli[i+1].indexOf('^') + 1);
 
                                 if(exponent.contains("x")){ exponent = "1"; }
 
@@ -206,13 +206,13 @@ public class Convertor {
 
                 else {
 
-                    if (newPolinom[i].charAt(0) == '-') {
+                    if (newPoli[i].charAt(0) == '-') {
 
                         // negative number
 
-                        if (!newPolinom[i].contains("/")) {
+                        if (!newPoli[i].contains("/")) {
 
-                            String scalar = newPolinom[i];
+                            String scalar = newPoli[i];
                             String exponent = "0";
 
                             if (scalar.equals("-")) { scalar ="-1"; }
@@ -224,10 +224,10 @@ public class Convertor {
                             Polyterm poly = new Polyterm(s, newExponent);
                             listP.add(poly);
 
-                        } else if (newPolinom[i].indexOf('/')!=newPolinom[i].length()-1){
+                        } else if (newPoli[i].indexOf('/')!=newPoli[i].length()-1){
 
-                            String numerator = newPolinom[i].substring(0, newPolinom[i].indexOf('/'));
-                            String denominator = newPolinom[i].substring(newPolinom[i].indexOf('/') + 1);
+                            String numerator = newPoli[i].substring(0, newPoli[i].indexOf('/'));
+                            String denominator = newPoli[i].substring(newPoli[i].indexOf('/') + 1);
                             String exponent = "0";
 
                             double newNumerator = Double.parseDouble(numerator);
@@ -240,9 +240,9 @@ public class Convertor {
 
                         }
                         else {
-                            String numerator = newPolinom[i].substring(0, newPolinom[i].indexOf('/'));
-                            String denominator = newPolinom[i+1].substring(0, newPolinom[i+1].indexOf('x'));
-                            String exponent = newPolinom[i+1].substring(newPolinom[i+1].indexOf('^') + 1);
+                            String numerator = newPoli[i].substring(0, newPoli[i].indexOf('/'));
+                            String denominator = newPoli[i+1].substring(0, newPoli[i+1].indexOf('x'));
+                            String exponent = newPoli[i+1].substring(newPoli[i+1].indexOf('^') + 1);
 
                             if(exponent.contains("x")){ exponent = "1"; }
 
@@ -263,9 +263,9 @@ public class Convertor {
 
                             // not the first number
 
-                            if (!newPolinom[i].contains("/")) {
+                            if (!newPoli[i].contains("/")) {
 
-                                String scalar = newPolinom[i].substring(1);
+                                String scalar = newPoli[i].substring(1);
                                 String exponent = "0";
 
                                 if (scalar.equals("")) {
@@ -279,10 +279,10 @@ public class Convertor {
                                 Polyterm poly = new Polyterm(s, newExponent);
                                 listP.add(poly);
 
-                            } else if (newPolinom[i].indexOf('/')!=newPolinom[i].length()-1){
+                            } else if (newPoli[i].indexOf('/')!=newPoli[i].length()-1){
 
-                                String numerator = newPolinom[i].substring(1, newPolinom[i].indexOf('/'));
-                                String denominator = newPolinom[i].substring(newPolinom[i].indexOf('/') + 1);
+                                String numerator = newPoli[i].substring(1, newPoli[i].indexOf('/'));
+                                String denominator = newPoli[i].substring(newPoli[i].indexOf('/') + 1);
                                 String exponent = "0";
 
                                 double newNumerator = Double.parseDouble(numerator);
@@ -295,9 +295,9 @@ public class Convertor {
 
                             }
                             else{
-                                String numerator = newPolinom[i].substring(0, newPolinom[i].indexOf('/'));
-                                String denominator = newPolinom[i+1].substring(0, newPolinom[i+1].indexOf('x'));
-                                String exponent = newPolinom[i+1].substring(newPolinom[i+1].indexOf('^') + 1);
+                                String numerator = newPoli[i].substring(0, newPoli[i].indexOf('/'));
+                                String denominator = newPoli[i+1].substring(0, newPoli[i+1].indexOf('x'));
+                                String exponent = newPoli[i+1].substring(newPoli[i+1].indexOf('^') + 1);
 
                                 if(exponent.contains("x")){ exponent = "1"; }
 
@@ -315,9 +315,9 @@ public class Convertor {
                         // first number
 
                         else {
-                            if (!newPolinom[i].contains("/")) {
+                            if (!newPoli[i].contains("/")) {
 
-                                String scalar = newPolinom[i];
+                                String scalar = newPoli[i];
                                 String exponent = "0";
 
                                 double newScalar = Double.parseDouble(scalar);
@@ -327,10 +327,10 @@ public class Convertor {
                                 Polyterm poly = new Polyterm(s, newExponent);
                                 listP.add(poly);
 
-                            } else if (newPolinom[i].indexOf('/')!=newPolinom[i].length()-1){
+                            } else if (newPoli[i].indexOf('/')!=newPoli[i].length()-1){
 
-                                String numerator = newPolinom[i].substring(0, newPolinom[i].indexOf('/'));
-                                String denominator = newPolinom[i].substring(newPolinom[i].indexOf('/') + 1);
+                                String numerator = newPoli[i].substring(0, newPoli[i].indexOf('/'));
+                                String denominator = newPoli[i].substring(newPoli[i].indexOf('/') + 1);
                                 String exponent = "0";
 
                                 double newNumerator = Double.parseDouble(numerator);
@@ -343,9 +343,9 @@ public class Convertor {
 
                             }
                             else{
-                                String numerator = newPolinom[i].substring(0, newPolinom[i].indexOf('/'));
-                                String denominator = newPolinom[i+1].substring(0, newPolinom[i+1].indexOf('x'));
-                                String exponent = newPolinom[i+1].substring(newPolinom[i+1].indexOf('^') + 1);
+                                String numerator = newPoli[i].substring(0, newPoli[i].indexOf('/'));
+                                String denominator = newPoli[i+1].substring(0, newPoli[i+1].indexOf('x'));
+                                String exponent = newPoli[i+1].substring(newPoli[i+1].indexOf('^') + 1);
 
                                 if(exponent.contains("x")){ exponent = "1"; }
 

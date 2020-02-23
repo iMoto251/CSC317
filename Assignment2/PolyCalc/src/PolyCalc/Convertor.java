@@ -3,8 +3,7 @@ package PolyCalc;
 import java.util.*;
 
 public class Convertor {
-
-
+    
     private String poly;
     private String field;
 

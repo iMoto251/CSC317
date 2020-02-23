@@ -1,35 +1,94 @@
 package PolyCalc;
 
-//import java.io.*;
-import java.util.*;
+import java.util.Scanner;
 
 public class Calculator {
-	//test push to github
-	
-	public static void main(String[] args) {
-		System.out.print("1. Addition\n2. Multiplication\n3. Evaluation\n4. Derivative\n5. Exit\nEnter Choice: ");
-		Scanner choice = new Scanner(System.in);
-		
-		int selection = choice.nextInt();
-		//while loop for switch
-		while(selection != 5) {
-			//switch to decide which function to run
-			switch(selection) {
-			case 1: System.out.println("C1");
-				break;
-			case 2: System.out.println("C2");
-				break;
-			case 3: System.out.println("C3");
-				break;
-			case 4: System.out.println("C4");
-					break;
-			default: System.out.println("Invalid choice");
-					break;
-			}
-			//asks for selection to loop around to the top if the switch
-        	System.out.print("1. Addition\n2. Multiplication\n3. Evaluation\n4. Derivative\n5. Exit\nEnter Choice: ");
-        	selection = choice.nextInt();
-		}
-		choice.close();
-	}
+    private static final String R = "R";
+
+    public static void main(String[] args) {
+
+        Scanner scanner = new Scanner(System.in);
+        int operation = -1;
+
+        while (operation != 5) {
+
+            System.out.println("Please select an operation:");
+            System.out.println("  1.Addition");
+            System.out.println("  2.Multiplication");
+            System.out.println("  3.Evaluation");
+            System.out.println("  4.Derivative");
+            System.out.println("  5.Exit");
+
+            operation = scanner.nextInt();
+
+            String poly_1;
+            String poly_2;
+            Polynomial p_1;
+            Polynomial p_2;
+            double scalar;
+
+            switch (operation) {
+
+                case 1: {
+                            System.out.println("Please insert the first polynomial");
+                            poly_1 = scanner.next();
+                            System.out.println("Please insert the second polynomial");
+                            poly_2 = scanner.next();
+                            System.out.println("The solution is:");
+
+
+                            p_1 = new Polynomial(new Convertor(poly_1, R).stringToPolynomial());
+                            p_2 = new Polynomial(new Convertor(poly_2, R).stringToPolynomial());
+                            System.out.println((p_1.add(p_2)).toString());
+                            System.out.println();
+                            break;
+                }    	
+                case 2: {
+                            System.out.println("Please insert the first polynomial");
+                            poly_1 = scanner.next();
+                            System.out.println("Please insert the second polynomial");
+                            poly_2 = scanner.next();
+                            System.out.println("The solution is:");
+
+                            p_1 = new Polynomial(new Convertor(poly_1, R).stringToPolynomial());
+                            p_2 = new Polynomial(new Convertor(poly_2, R).stringToPolynomial());
+                            System.out.println(p_1.mul(p_2));
+                            System.out.println();
+                            break;
+                }
+                case 3: {
+                            System.out.println("Please insert the first polynomial");
+                            poly_1 = scanner.next();
+                            System.out.println("Please insert the scalar");
+                            scalar = scanner.nextDouble();
+                            System.out.println("The solution is:");
+
+                            p_1 = new Polynomial(new Convertor(poly_1, R).stringToPolynomial());
+                            Scalar rS;
+                            if(scalar<0) {
+                                rS = new Scalar(scalar,"-");
+                            } else {
+                                rS = new Scalar(scalar,"+");
+                            }
+                            System.out.println(p_1.evaluate(rS));
+                            System.out.println();
+                            break;
+                }
+                case 4: {
+                            System.out.println("Please insert the first polynomial");
+                            poly_1 = scanner.next();
+                            System.out.println("The derivative polynomial is:");
+
+                            p_1 = new Polynomial(new Convertor(poly_1, R).stringToPolynomial());
+                            System.out.println(p_1.derivate());
+                            System.out.println();
+                            break;
+                }
+                case 5:{
+                    break;
+                }
+            }
+        }
+        scanner.close();
+    }
 }

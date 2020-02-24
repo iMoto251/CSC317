@@ -35,8 +35,7 @@ public class Calculator {
                             System.out.println("Please insert the second polynomial");
                             poly_2 = scanner.next();
                             System.out.println("The solution is:");
-
-
+                          
                             p_1 = new Polynomial(new Convertor(poly_1).stringToPolynomial());
                             p_2 = new Polynomial(new Convertor(poly_2).stringToPolynomial());
                             System.out.println((p_1.add(p_2)).toString());
@@ -91,4 +90,5 @@ public class Calculator {
         }
         scanner.close();
     }
+    
 }

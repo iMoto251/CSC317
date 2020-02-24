@@ -99,20 +99,20 @@ public class Polynomial {
         this.listP = listP;
     }
 
-    public Polynomial unite(List<Polyterm> listP) { //this function unite all the same exponents in the list and return a sorted polinomial
+    public Polynomial unite(List<Polyterm> listP) { //this function unite all the same exps in the list and return a sorted polinomial
         List<Polyterm> output = new ArrayList<>();
-        boolean[] alreadyAdded = new boolean[listP.get(listP.size()-1).getExponent()+1];
+        boolean[] alreadyAdded = new boolean[listP.get(listP.size()-1).getExp()+1];
         for (int i = 0; i < listP.size(); i = i + 1) {
             Polyterm add = listP.get(i);
-            for (int j = i + 1; j < listP.size() & !alreadyAdded[add.getExponent()]; j = j + 1) {
+            for (int j = i + 1; j < listP.size() & !alreadyAdded[add.getExp()]; j = j + 1) {
                 if (add.canAdd(listP.get(j))) {
                     add = add.add((listP.get(j)));
                 }
             }
-            if (!alreadyAdded[add.getExponent()]) {
+            if (!alreadyAdded[add.getExp()]) {
                 output.add(add);
             }
-            alreadyAdded[add.getExponent()] = true;
+            alreadyAdded[add.getExp()] = true;
         }
 
         // removes all 0 scalars

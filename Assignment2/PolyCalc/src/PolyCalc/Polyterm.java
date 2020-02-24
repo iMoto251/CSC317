@@ -3,16 +3,16 @@ package PolyCalc;
 public class Polyterm {
 
     private Scalar scalar;
-    private int exponent;
+    private int exp;
     private String indication;
 	
 	public boolean canAdd(Polyterm pt) {
-        return pt.getExponent() == exponent;
+        return pt.getExp() == exp;
     }
 
     public Polyterm add(Polyterm pt) {
         if (canAdd(pt)) {
-            Polyterm output = new Polyterm(pt.getScalar().add(scalar), exponent);
+            Polyterm output = new Polyterm(pt.getScalar().add(scalar), exp);
             return output;
         } else {
             return this;
@@ -21,19 +21,19 @@ public class Polyterm {
 	
 	public Polyterm mult(Polyterm pt) {
 
-        Polyterm output = new Polyterm(getScalar().mult(pt.getScalar()), getExponent() + pt.getExponent());
+        Polyterm output = new Polyterm(getScalar().mult(pt.getScalar()), getExp() + pt.getExp());
         return output;
     }
 	
 	public Scalar evaluate(Scalar scalar) {
-        Scalar output = (scalar.pow(getExponent())).mult(getScalar());
+        Scalar output = (scalar.pow(getExp())).mult(getScalar());
         return output;
     }
 	
 	public Polyterm derivative() {
         Polyterm output;
-        if (getExponent() != 0) {
-            output = new Polyterm(getScalar().multInt(exponent), exponent - 1);
+        if (getExp() != 0) {
+            output = new Polyterm(getScalar().multInt(exp), exp - 1);
         } else {
             output = new Polyterm(getScalar().multInt(0), 1);
         }
@@ -41,31 +41,31 @@ public class Polyterm {
     }
 	
 	public boolean equals(Polyterm polyTerm) {
-        return (getScalar().equals(polyTerm.getScalar()) &
-                getExponent() == polyTerm.getExponent());
+        return (getScalar().equals(polyTerm.getScalar()) & getExp() == polyTerm.getExp());
     }
 	
-	//Added helpers
-    public Polyterm(Scalar scalar, int exponent) {
+	//Constructor
+    public Polyterm(Scalar scalar, int exp) {
         this.scalar = scalar;
-        this.exponent = exponent;
+        this.exp = exp;
         this.indication = scalar.getIndication();
     }
 
+    //Added helpers
     public Scalar getScalar() {
         return scalar;
     }
 
-    public int getExponent() {
-        return exponent;
+    public int getExp() {
+        return exp;
     }
 
     public void setScalar(Scalar scalar) {
         this.scalar = scalar;
     }
 
-    public void setExponent(int exponent) {
-        this.exponent = exponent;
+    public void setexp(int exp) {
+        this.exp = exp;
     }
 
     public String getIndication() {
@@ -73,35 +73,38 @@ public class Polyterm {
     }
 
     public int compareTo(Polyterm poly) {
-        return getExponent() - poly.getExponent();
+        return getExp() - poly.getExp();
     }
 
     public String toString() {
-        String s;
+        String poly;
         if (getScalar().isZero()) {
             return "";
         }
-        if (getExponent() == 0) {
-            s = this.getScalar().toString();
+        
+        if (getExp() == 0) {
+            poly = this.getScalar().toString();
         }
-        else if (getExponent()!=1){
+        
+        else if (getExp()!=1){
             if (getScalar().toString().equals("1")) {
-                s = "x^" + getExponent();
+                poly = "x^" + getExp();
             } else if (getScalar().toString().equals("-1")) {
-                s = "-x^" + getExponent();
+                poly = "-x^" + getExp();
             } else {
-                s =  getScalar().toString()  + "x^" + getExponent();
+                poly =  getScalar().toString()  + "x^" + getExp();
             }
         }
+        
         else{
             if (getScalar().toString().equals("1")) {
-                s = "x";
+                poly = "x";
             } else if (getScalar().toString().equals("-1")) {
-                s = "-x";
+                poly = "-x";
             } else {
-                s =  getScalar().toString()  + "x";
+                poly =  getScalar().toString()  + "x";
             }
         }
-        return s;
+        return poly;
     }
 }

@@ -3,7 +3,7 @@ package PolyCalc;
 import java.util.Scanner;
 
 public class Calculator {
-    private static final String R = "R";
+    //private static final String R = "R";
 
     public static void main(String[] args) {
 
@@ -37,8 +37,8 @@ public class Calculator {
                             System.out.println("The solution is:");
 
 
-                            p_1 = new Polynomial(new Convertor(poly_1, R).stringToPolynomial());
-                            p_2 = new Polynomial(new Convertor(poly_2, R).stringToPolynomial());
+                            p_1 = new Polynomial(new Convertor(poly_1).stringToPolynomial());
+                            p_2 = new Polynomial(new Convertor(poly_2).stringToPolynomial());
                             System.out.println((p_1.add(p_2)).toString());
                             System.out.println();
                             break;
@@ -50,8 +50,8 @@ public class Calculator {
                             poly_2 = scanner.next();
                             System.out.println("The solution is:");
 
-                            p_1 = new Polynomial(new Convertor(poly_1, R).stringToPolynomial());
-                            p_2 = new Polynomial(new Convertor(poly_2, R).stringToPolynomial());
+                            p_1 = new Polynomial(new Convertor(poly_1).stringToPolynomial());
+                            p_2 = new Polynomial(new Convertor(poly_2).stringToPolynomial());
                             System.out.println(p_1.mult(p_2));
                             System.out.println();
                             break;
@@ -63,7 +63,7 @@ public class Calculator {
                             scalar = scanner.nextDouble();
                             System.out.println("The solution is:");
 
-                            p_1 = new Polynomial(new Convertor(poly_1, R).stringToPolynomial());
+                            p_1 = new Polynomial(new Convertor(poly_1).stringToPolynomial());
                             Scalar rS;
                             if(scalar<0) {
                                 rS = new Scalar(scalar,"-");
@@ -79,7 +79,7 @@ public class Calculator {
                             poly_1 = scanner.next();
                             System.out.println("The derivative polynomial is:");
 
-                            p_1 = new Polynomial(new Convertor(poly_1, R).stringToPolynomial());
+                            p_1 = new Polynomial(new Convertor(poly_1).stringToPolynomial());
                             System.out.println(p_1.derivative());
                             System.out.println();
                             break;

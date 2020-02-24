@@ -5,6 +5,7 @@ public class Scalar {
     private double value;
     private String indication;
 	
+    //Default methods
 	public Scalar add(Scalar s) {
         return valueCheck(((Scalar) s).getValue() + getValue());
     }
@@ -13,11 +14,11 @@ public class Scalar {
         return valueCheck(((Scalar) s).getValue() * getValue());
     }
 	
-	public Scalar pow(int exponent) {
+	public Scalar pow(int exp) {
         double newValue = value;
-        while (exponent != 1) {
+        while (exp != 1) {
             newValue = newValue * value;
-            exponent = exponent - 1;
+            exp = exp - 1;
         }
         return valueCheck(newValue);
     }
@@ -30,12 +31,14 @@ public class Scalar {
         return ((Scalar) s).getValue() == getValue();
     }
 	
-	//Added helpers
+	//Constructor
     public Scalar(double value, String indication) {
         this.value = value;
         this.indication = indication;
     }
 
+    
+    //Added helpers
     public double getValue() {
         return value;
     }
@@ -44,8 +47,8 @@ public class Scalar {
         this.value = value;
     }
 
-    public Scalar multInt(int exponent) {
-        return valueCheck(getValue() * exponent);
+    public Scalar multInt(int exp) {
+        return valueCheck(getValue() * exp);
     }
 
     public String getIndication(){
@@ -56,19 +59,10 @@ public class Scalar {
 
         String number = Double.toString(getValue());
         String integer = number.substring(0, number.indexOf('.'));
-        String fraction = number.substring(number.indexOf('.') + 1);
-
         String output;
-
-        if (fraction.length() > 3) {
-            fraction = fraction.substring(0, 3);
-        }
-
-        if(fraction.equals("0")){
-            output = integer;
-        } else {
-            output = integer + "." + fraction;
-        }
+        
+        
+        output = integer;
 
         return output;
     }

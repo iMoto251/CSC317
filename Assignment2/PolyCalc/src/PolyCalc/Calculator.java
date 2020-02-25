@@ -90,5 +90,4 @@ public class Calculator {
         }
         scanner.close();
     }
-    
 }

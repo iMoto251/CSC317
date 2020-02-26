@@ -20,177 +20,72 @@ public class Convertor {
         String negN = "-";
         String posN = "+";
         
-            for (int i = 0; i < newPoly.length; i = i + 1) {
+        for (int i = 0; i < newPoly.length; i = i + 1) {
 
-                // with X
+        // with X
 
-                if (newPoly[i].contains("x")) {
+        if (newPoly[i].contains("x")) {
 
-                    // negative number
+        // negative number
 
-                    if (newPoly[i].charAt(0) == '-') {
+        	if (newPoly[i].charAt(0) == '-') {
+                      
+        		String scalar = newPoly[i].substring(0, newPoly[i].indexOf('x'));
+                String exp = newPoly[i].substring(newPoly[i].indexOf('^') + 1);
 
-                        if (!newPoly[i].contains("/")) {
+                if(exp.contains("x")){ exp = "1"; }
 
-                            String scalar = newPoly[i].substring(0, newPoly[i].indexOf('x'));
-                            String exp = newPoly[i].substring(newPoly[i].indexOf('^') + 1);
+                if(scalar.equals("-")) { scalar = "-1"; }
 
-                            if(exp.contains("x")){ exp = "1"; }
+                double newScalar = Double.parseDouble(scalar);
+                int newExp = Integer.parseInt(exp);
 
-                            if(scalar.equals("-")) { scalar = "-1"; }
-
-                            double newScalar = Double.parseDouble(scalar);
-                            int newExp = Integer.parseInt(exp);
-
-                            Scalar s  = new Scalar(newScalar,negN);
-                            Polyterm poly = new Polyterm(s, newExp);
-                            listP.add(poly);
-
-                        }
-                        else if (newPoly[i].indexOf('/')!=newPoly[i].length()-1) {
-
-                            String numerator = newPoly[i].substring(0, newPoly[i].indexOf('/'));
-                            String denominator = newPoly[i].substring(newPoly[i].indexOf('/') + 1, newPoly[i].indexOf('x'));
-                            String exp = newPoly[i].substring(newPoly[i].indexOf('^') + 1);
-
-                            if(exp.contains("x")){ exp = "1"; }
-
-                            double newNumerator = Double.parseDouble(numerator);
-                            double newDenominator = Double.parseDouble(denominator);
-                            int newExp = Integer.parseInt(exp);
-
-                            Scalar s = new Scalar(newNumerator / newDenominator,negN);
-                            Polyterm poly = new Polyterm(s, newExp);
-                            listP.add(poly);
-                        }
-                        else{
-                            String numerator = newPoly[i].substring(0, newPoly[i].indexOf('/'));
-                            String denominator = newPoly[i+1].substring(0, newPoly[i+1].indexOf('x'));
-                            String exp = newPoly[i+1].substring(newPoly[i+1].indexOf('^') + 1);
-
-                            if(exp.contains("x")){ exp = "1"; }
-
-                            double newNumerator = Double.parseDouble(numerator);
-                            double newDenominator = Double.parseDouble(denominator);
-                            int newExp = Integer.parseInt(exp);
-
-                            Scalar s = new Scalar(newNumerator/newDenominator,posN);
-                            Polyterm poly = new Polyterm(s, newExp);
-                            listP.add(poly);
-                            i=i+1;
-                        }
-
-                    } else {
-
-                        // positive number
+                Scalar s  = new Scalar(newScalar,negN);
+                Polyterm poly = new Polyterm(s, newExp);
+                listP.add(poly);
 
 
-                        if (i != 0) {
+        } else {
+
+        	// positive number
+
+        	if (i != 0) {
 
                             // not the first number
 
-                            if (!newPoly[i].contains("/")) {
 
-                                String scalar = newPoly[i].substring(1, newPoly[i].indexOf('x'));
-                                String exp = newPoly[i].substring(newPoly[i].indexOf('^') + 1);
+                String scalar = newPoly[i].substring(1, newPoly[i].indexOf('x'));
+                String exp = newPoly[i].substring(newPoly[i].indexOf('^') + 1);
 
-                                if(exp.contains("x")){ exp = "1"; }
+                if(exp.contains("x")){ exp = "1"; }
 
-                                if(scalar.equals("")) { scalar = "1"; }
+                if(scalar.equals("")) { scalar = "1"; }
 
-                                double newScalar = Double.parseDouble(scalar);
-                                int newExp = Integer.parseInt(exp);
+                double newScalar = Double.parseDouble(scalar);
+                int newExp = Integer.parseInt(exp);
 
-                                Scalar s  = new Scalar(newScalar,posN);
-                                Polyterm poly = new Polyterm(s, newExp);
-                                listP.add(poly);
+                Scalar s  = new Scalar(newScalar,posN);
+                Polyterm poly = new Polyterm(s, newExp);
+                listP.add(poly);
+                           
+        	} else {
 
-                            }
-                            else if (newPoly[i].indexOf('/')!=newPoly[i].length()-1){
+        	// first number                            
 
-                                String numerator = newPoly[i].substring(1, newPoly[i].indexOf('/'));
-                                String denominator = newPoly[i].substring(newPoly[i].indexOf('/') + 1, newPoly[i].indexOf('x'));
-                                String exp = newPoly[i].substring(newPoly[i].indexOf('^') + 1);
+                String scalar = newPoly[i].substring(0, newPoly[i].indexOf('x'));
+                String exp = newPoly[i].substring(newPoly[i].indexOf('^') + 1);
 
-                                double newNumerator = Double.parseDouble(numerator);
-                                double newDenominator = Double.parseDouble(denominator);
-                                int newExp = Integer.parseInt(exp);
+                if(exp.contains("x")){ exp = "1"; }
 
-                                Scalar s = new Scalar(newNumerator / newDenominator,posN);
-                                Polyterm poly = new Polyterm(s, newExp);
-                                listP.add(poly);
+                if(scalar.equals("")) { scalar = "1"; }
 
-                            }
-                            else{
-                                String numerator = newPoly[i].substring(0, newPoly[i].indexOf('/'));
-                                String denominator = newPoly[i+1].substring(0, newPoly[i+1].indexOf('x'));
-                                String exp = newPoly[i+1].substring(newPoly[i+1].indexOf('^') + 1);
+                double newScalar = Double.parseDouble(scalar);
+                int newExp = Integer.parseInt(exp);
 
-                                if(exp.contains("x")){ exp = "1"; }
-
-                                double newNumerator = Double.parseDouble(numerator);
-                                double newDenominator = Double.parseDouble(denominator);
-                                int newExp = Integer.parseInt(exp);
-
-                                Scalar s = new Scalar(newNumerator/newDenominator,negN);
-                                Polyterm poly = new Polyterm(s, newExp);
-                                listP.add(poly);
-                                i=i+1;
-                            }
-                        } else {
-
-                            // first number
-
-                            if (!newPoly[i].contains("/")) {
-
-                                String scalar = newPoly[i].substring(0, newPoly[i].indexOf('x'));
-                                String exp = newPoly[i].substring(newPoly[i].indexOf('^') + 1);
-
-                                if(exp.contains("x")){ exp = "1"; }
-
-                                if(scalar.equals("")) { scalar = "1"; }
-
-                                double newScalar = Double.parseDouble(scalar);
-                                int newExp = Integer.parseInt(exp);
-
-                                Scalar s  = new Scalar(newScalar,posN);
-                                Polyterm poly = new Polyterm(s, newExp);
-                                listP.add(poly);
-
-                            } else if (newPoly[i].indexOf('/')!=newPoly[i].length()-1){
-
-                                String numerator = newPoly[i].substring(0, newPoly[i].indexOf('/'));
-                                String denominator = newPoly[i].substring(newPoly[i].indexOf('/') + 1, newPoly[i].indexOf('x'));
-                                String exp = newPoly[i].substring(newPoly[i].indexOf('^') + 1);
-
-                                if(exp.contains("x")){ exp = "1"; }
-
-                                double newNumerator = Double.parseDouble(numerator);
-                                double newDenominator = Double.parseDouble(denominator);
-                                int newExp = Integer.parseInt(exp);
-
-                                Scalar s = new Scalar(newNumerator / newDenominator,posN);
-                                Polyterm poly = new Polyterm(s, newExp);
-                                listP.add(poly);
-
-                            }
-                            else{
-                                String numerator = newPoly[i].substring(0, newPoly[i].indexOf('/'));
-                                String denominator = newPoly[i+1].substring(0, newPoly[i+1].indexOf('x'));
-                                String exp = newPoly[i+1].substring(newPoly[i+1].indexOf('^') + 1);
-
-                                if(exp.contains("x")){ exp = "1"; }
-
-                                double newNumerator = Double.parseDouble(numerator);
-                                double newDenominator = Double.parseDouble(denominator);
-                                int newExp = Integer.parseInt(exp);
-
-                                Scalar s = new Scalar(newNumerator/newDenominator,negN);
-                                Polyterm poly = new Polyterm(s, newExp);
-                                listP.add(poly);
-                                i=i+1;
-                            }
-
+                Scalar s  = new Scalar(newScalar,posN);
+                Polyterm poly = new Polyterm(s, newExp);
+                listP.add(poly);
+                          
                         }
                     }
                 }
@@ -203,8 +98,6 @@ public class Convertor {
 
                         // negative number
 
-                        if (!newPoly[i].contains("/")) {
-
                             String scalar = newPoly[i];
                             String exp = "0";
 
@@ -216,38 +109,7 @@ public class Convertor {
                             Scalar s  = new Scalar(newScalar,negN);
                             Polyterm poly = new Polyterm(s, newExp);
                             listP.add(poly);
-
-                        } else if (newPoly[i].indexOf('/')!=newPoly[i].length()-1){
-
-                            String numerator = newPoly[i].substring(0, newPoly[i].indexOf('/'));
-                            String denominator = newPoly[i].substring(newPoly[i].indexOf('/') + 1);
-                            String exp = "0";
-
-                            double newNumerator = Double.parseDouble(numerator);
-                            double newDenominator = Double.parseDouble(denominator);
-                            int newExp = Integer.parseInt(exp);
-
-                            Scalar s = new Scalar(newNumerator / newDenominator,negN);
-                            Polyterm poly = new Polyterm(s, newExp);
-                            listP.add(poly);
-
-                        }
-                        else {
-                            String numerator = newPoly[i].substring(0, newPoly[i].indexOf('/'));
-                            String denominator = newPoly[i+1].substring(0, newPoly[i+1].indexOf('x'));
-                            String exp = newPoly[i+1].substring(newPoly[i+1].indexOf('^') + 1);
-
-                            if(exp.contains("x")){ exp = "1"; }
-
-                            double newNumerator = Double.parseDouble(numerator);
-                            double newDenominator = Double.parseDouble(denominator);
-                            int newExp = Integer.parseInt(exp);
-
-                            Scalar s = new Scalar(newNumerator/newDenominator,posN);
-                            Polyterm poly = new Polyterm(s, newExp);
-                            listP.add(poly);
-                            i=i+1;
-                        }
+                        
                     } else {
 
                         // positive number
@@ -255,8 +117,6 @@ public class Convertor {
                         if (i != 0) {
 
                             // not the first number
-
-                            if (!newPoly[i].contains("/")) {
 
                                 String scalar = newPoly[i].substring(1);
                                 String exp = "0";
@@ -270,45 +130,12 @@ public class Convertor {
 
                                 Scalar s  = new Scalar(newScalar,posN);
                                 Polyterm poly = new Polyterm(s, newExp);
-                                listP.add(poly);
-
-                            } else if (newPoly[i].indexOf('/')!=newPoly[i].length()-1){
-
-                                String numerator = newPoly[i].substring(1, newPoly[i].indexOf('/'));
-                                String denominator = newPoly[i].substring(newPoly[i].indexOf('/') + 1);
-                                String exp = "0";
-
-                                double newNumerator = Double.parseDouble(numerator);
-                                double newDenominator = Double.parseDouble(denominator);
-                                int newExp = Integer.parseInt(exp);
-
-                                Scalar s = new Scalar(newNumerator / newDenominator,posN);
-                                Polyterm poly = new Polyterm(s, newExp);
-                                listP.add(poly);
-
-                            }
-                            else{
-                                String numerator = newPoly[i].substring(0, newPoly[i].indexOf('/'));
-                                String denominator = newPoly[i+1].substring(0, newPoly[i+1].indexOf('x'));
-                                String exp = newPoly[i+1].substring(newPoly[i+1].indexOf('^') + 1);
-
-                                if(exp.contains("x")){ exp = "1"; }
-
-                                double newNumerator = Double.parseDouble(numerator);
-                                double newDenominator = Double.parseDouble(denominator);
-                                int newExp = Integer.parseInt(exp);
-
-                                Scalar s = new Scalar(newNumerator/newDenominator,negN);
-                                Polyterm poly = new Polyterm(s, newExp);
-                                listP.add(poly);
-                                i=i+1;
-                            }
+                                listP.add(poly);                            
                         }
 
                         // first number
 
-                        else {
-                            if (!newPoly[i].contains("/")) {
+                        else {                           
 
                                 String scalar = newPoly[i];
                                 String exp = "0";
@@ -319,38 +146,7 @@ public class Convertor {
                                 Scalar s = new Scalar(newScalar,posN);
                                 Polyterm poly = new Polyterm(s, newExp);
                                 listP.add(poly);
-
-                            } else if (newPoly[i].indexOf('/')!=newPoly[i].length()-1){
-
-                                String numerator = newPoly[i].substring(0, newPoly[i].indexOf('/'));
-                                String denominator = newPoly[i].substring(newPoly[i].indexOf('/') + 1);
-                                String exp = "0";
-
-                                double newNumerator = Double.parseDouble(numerator);
-                                double newDenominator = Double.parseDouble(denominator);
-                                int newExp = Integer.parseInt(exp);
-
-                                Scalar s = new Scalar(newNumerator / newDenominator,posN);
-                                Polyterm poly = new Polyterm(s, newExp);
-                                listP.add(poly);
-
-                            }
-                            else{
-                                String numerator = newPoly[i].substring(0, newPoly[i].indexOf('/'));
-                                String denominator = newPoly[i+1].substring(0, newPoly[i+1].indexOf('x'));
-                                String exp = newPoly[i+1].substring(newPoly[i+1].indexOf('^') + 1);
-
-                                if(exp.contains("x")){ exp = "1"; }
-
-                                double newNumerator = Double.parseDouble(numerator);
-                                double newDenominator = Double.parseDouble(denominator);
-                                int newExp = Integer.parseInt(exp);
-
-                                Scalar s = new Scalar(newNumerator/newDenominator,negN);
-                                Polyterm poly = new Polyterm(s, newExp);
-                                listP.add(poly);
-                                i=i+1;
-                            }
+                           
                         }
                     }
                 }

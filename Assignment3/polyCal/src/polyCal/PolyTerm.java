@@ -68,9 +68,9 @@ public class PolyTerm implements Comparable<PolyTerm>{
 				coefficient="-1";
 			
 			if(coefficient.contains("/"))
-				this.coefficient=new Scalar(Double.parseDouble(numerator)/Double.parseDouble(divisor));
+				this.coefficient=new RealScalar(Double.parseDouble(numerator)/Double.parseDouble(divisor));
 			else
-				this.coefficient=new Scalar(Double.parseDouble(coefficient));
+				this.coefficient=new RealScalar(Double.parseDouble(coefficient));
 		}
 	}
 	

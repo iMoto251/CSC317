@@ -8,6 +8,7 @@ public class Calculator {
 
         Scanner scanner = new Scanner(System.in);
         int operation = -1;
+        //String scalarChoice;
 
         while (operation != 5) {
 
@@ -19,6 +20,9 @@ public class Calculator {
             System.out.println("  5.Exit");
 
             operation = scanner.nextInt();
+            
+            //System.out.println("Is your polynomial Real (R) or Rational (Q)?");
+            //scalarChoice = scanner.next();
 
             String p1;
             String p2;
@@ -69,7 +73,7 @@ public class Calculator {
 		                    System.out.println("The solution is:");
 		                    
 		                    Polynomial poly1=new Polynomial(p1,false);
-							Scalar scalar= new Scalar(Double.parseDouble(number));
+							Scalar scalar= new RealScalar(Double.parseDouble(number));
 							System.out.println(poly1.evaluate(scalar));
                             
                             break;

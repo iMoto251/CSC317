@@ -111,14 +111,14 @@ public class Polynomial {
 		Iterator<PolyTerm> it1=this.list.iterator();
 		if(this.isRational) {
 			//Take this out
-			Scalar ans=new Scalar(1);
+			Scalar ans=new RealScalar(1);
 			while(it1.hasNext()) {
 				ans=ans.add(it1.next().evaluate(scalar));
 			}
 			return ans;
 		}
 		else {
-			Scalar ans=new Scalar(0);
+			Scalar ans=new RealScalar(0);
 			while(it1.hasNext()) {
 				ans=ans.add(it1.next().evaluate(scalar));
 			}

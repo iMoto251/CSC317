@@ -1,6 +1,6 @@
 package puzzle;
 
-import java.io.*;
+//import java.io.*;
 import java.util.*;
 
 public class puzzles {
@@ -16,6 +16,7 @@ public class puzzles {
 		}
 		else if(s.equals("2")) {
 			System.out.println("Game 2");
+			pitcherPuzzle.game();
 		}
 		else {
 			System.out.println("Invalid Selection");

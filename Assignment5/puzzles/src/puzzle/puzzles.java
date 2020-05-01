@@ -22,8 +22,7 @@ public class puzzles {
 				System.out.println("Game 2");
 				pitcherPuzzle.game();
 			}
-			else if(s.equals("3")) {
-			}
+			else if(s.equals("3")) {}
 			else {
 				System.out.println("Invalid Selection");
 			}

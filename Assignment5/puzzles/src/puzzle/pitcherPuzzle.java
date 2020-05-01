@@ -17,23 +17,30 @@ public class pitcherPuzzle {
 		System.out.print("]");
 	}
 	
+	public static void capacities(int pitchers) {
+		int cap[] = new int[pitchers];
+		
+		System.out.println("Enter the capacities of the " + pitchers + " on seperate lines (gallons)");
+		Scanner entry = new Scanner(System.in);
+		for(int i =0; i< pitchers; i++) {
+			if(i != pitchers) {
+				System.out.print("Pitcher " + (i+1) + ": ");
+				int gallons = entry.nextInt();
+				cap[i] = gallons;
+			}			
+		}
+		entry.close();
+	}
+	
 	public static void game() {
 		System.out.print("Enter the number of pitchers: ");
 		Scanner pitchNum = new Scanner(System.in);
 		int pitchers = pitchNum.nextInt();	
-		int arr[] = new int[pitchers];
+		int p[] = new int[pitchers];
 		
-		System.out.print("Enter the capacities of the " + pitchers + " on seperate lines (gallons): ");
-		Scanner entry = new Scanner(System.in);
-		for(int i =0; i< pitchers; i++) {
-			if(i != pitchers) {
-				int gallons = entry.nextInt();
-				arr[i] = gallons;
-			}			
-		}
-		entry.close();
+		capacities(pitchers);
 		
-		disp(arr, pitchers);
+		disp(p, pitchers);
 		pitchNum.close();
 	}
 

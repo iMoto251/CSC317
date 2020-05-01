@@ -42,13 +42,13 @@ public class eightPuzzle {
 		return true;
 	}
 	
-	public static void game() {
+	public static void game(String fileName) {
 		int maze[][]=new int[3][3];
 		int x=0,y=0;
 		int r=0,c=0;
 		
 		try {
-			File myObj = new File("input.txt");
+			File myObj = new File(fileName);
 			Scanner sc = new Scanner(myObj);
 			
 			while (sc.hasNextLine()) {
@@ -135,6 +135,7 @@ public class eightPuzzle {
 				}
 		}
 		sc.close();
+		
 	
 	}
 	

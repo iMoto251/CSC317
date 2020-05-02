@@ -17,9 +17,12 @@ public class pitcherPuzzle {
 		System.out.print("]");
 	}
 	
-	public static void fill(int cap[]) {
+	public static int fill(int cap, int amount) {
+		int x = 0;
 		
-	
+		
+		
+		return x;
 	}
 	
 	public void empty() {
@@ -43,7 +46,8 @@ public class pitcherPuzzle {
 	public static void game() {
 		System.out.print("Enter the number of pitchers: ");
 		Scanner pitchNum = new Scanner(System.in);
-		int numOpitchers = pitchNum.nextInt();	
+		int numOpitchers = pitchNum.nextInt();
+		
 		int cap[] = new int[numOpitchers];
 		int amount[] = new int[numOpitchers];
 		
@@ -59,15 +63,13 @@ public class pitcherPuzzle {
 		
 		System.out.print("Enter the goal (gallons): ");
 		int goal = entry.nextInt();
-		entry.close();
-		
-		fill(cap);
+				
+		fill(cap[2],amount[2]);
 		
 		disp(amount, numOpitchers);
 		check(amount, numOpitchers, goal);
 		
-		pitchNum.close();
-	
+		entry.close();
+		pitchNum.close();	
 	}
-
 }

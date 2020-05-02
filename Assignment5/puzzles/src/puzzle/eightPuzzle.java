@@ -77,7 +77,7 @@ public class eightPuzzle {
 		disp(maze);
 		// Games begins
 		Scanner sc = new Scanner(System.in);
-		//String s="";
+		///String s="";
 		while (true) {
 		
 			System.out.println("Enter your move:");

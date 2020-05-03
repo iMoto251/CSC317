@@ -1,6 +1,7 @@
 package puzzle;
 
-import java.util.Scanner;
+import java.util.*;
+//import java.io.*;
 
 public class pitcherPuzzle {
 	
@@ -14,29 +15,26 @@ public class pitcherPuzzle {
 				System.out.print(arr[i] + ", ");
 			}
 		}
-		System.out.print("]");
+		System.out.println("]");
 	}
 	
-	public static int fill(int cap, int amount) {
-		int x = 0;
-		
-		
-		
-		return x;
+	public static void fill(int cap, int position, int amount[]) {
+		amount[position] = cap;
 	}
 	
-	public void empty() {
-		
+	public static void empty(int position, int amount[]) {
+		amount[position] = 0;
 	}
 	
 	public void pour() {
 		
 	}
-	
+
+
 	public static boolean check (int amount[], int pitchers, int goal) {
 		for(int i = 0; i< pitchers; i++){
 			if(amount[i] == goal){
-				System.out.print("Game won");
+				//System.out.print("Game won");
 				return true;
 			}
 		}
@@ -44,17 +42,18 @@ public class pitcherPuzzle {
 	}
 	
 	public static void game() {
+		
 		System.out.print("Enter the number of pitchers: ");
 		Scanner pitchNum = new Scanner(System.in);
-		int numOpitchers = pitchNum.nextInt();
+		int pitchers = pitchNum.nextInt();
 		
-		int cap[] = new int[numOpitchers];
-		int amount[] = new int[numOpitchers];
+		int cap[] = new int[pitchers];
+		int amount[] = new int[pitchers];
 		
-		System.out.println("Enter the capacities of the " + numOpitchers + " on seperate lines (gallons)");
+		System.out.println("Enter the capacities of the " + pitchers + " on seperate lines (gallons)");
 		Scanner entry = new Scanner(System.in);
-		for(int i =0; i< numOpitchers; i++) {
-			if(i != numOpitchers) {
+		for(int i =0; i< pitchers; i++) {
+			if(i != pitchers) {
 				System.out.print("Pitcher " + (i+1) + ": ");
 				int gallons = entry.nextInt();
 				cap[i] = gallons;
@@ -63,13 +62,47 @@ public class pitcherPuzzle {
 		
 		System.out.print("Enter the goal (gallons): ");
 		int goal = entry.nextInt();
+		
+		Scanner sc = new Scanner(System.in);
+		while (true) {
+		
+			disp(amount, pitchers);
+			System.out.println("Please select your move from the following choices:");
+			String s=sc.next();
+			
+		
+			if(s.equals("1"))
+			{
+				fill(cap[1], 1, amount);
+			}
+		
+			else if(s.equals("2"))
+			{
+				empty(1, amount);
+			}
+		
+			else if(s.equals("3"))
+			{
 				
-		fill(cap[2],amount[2]);
+			}
 		
-		disp(amount, numOpitchers);
-		check(amount, numOpitchers, goal);
-		
+			else if (s.equals("4"))
+			{
+				
+			}
+			
+			else
+				System.out.println("Illegal Move. Try again!");
+			
+			disp(amount, pitchers);
+			
+			if(check(amount, pitchers, goal)){
+				System.out.println("Game won!");
+				break;
+			}
+		}
+		sc.close();
 		entry.close();
-		pitchNum.close();	
+		pitchNum.close();
 	}
 }

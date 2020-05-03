@@ -31,22 +31,26 @@ public class pitcherPuzzle {
 	}
 	
 	public static void dispChoices(int choiceNum, String[] choices, int cap[], int amount[], int pitchers) {
+		int count=0;
 		for(int i=0; i<choiceNum;i++)
-			choices[i] = "";
+			choices[i] = "Empty\n";
 		
-		for(int i=0; i<choiceNum;i++) {
-			for(int j=0; j<pitchers;j++) {
-				if(amount[j] != cap[j]) {
-					choices[j] = ("Fill pitcher " + (j+1) + "\n");
-				}
-				else if(amount[j] != 0) {
-					choices[(j+pitchers)] = ("Empty pitcher " + (j+1) + "\n");
-					
-				}
-				else if(amount[j] != 0 || amount[j] != cap[j]) {
-					choices[(j+pitchers)] = ("Pour");
-				}
-			}		
+		for(int i=0;i<pitchers;i++) {
+			if(amount[i] != cap[i]) {
+				choices[count] = ("Fill pitcher " + (i+1) + "\n");
+				count++;
+			}
+		}
+		for(int i=0;i<pitchers;i++) {
+			if(amount[i] != 0) {
+				choices[count] = ("Empty pitcher " + (i+1) + "\n");
+			} 
+		}
+		for(int i=0;i<pitchers;i++) {
+			if(amount[i] != 0 || amount[i] != cap[i]) {
+				choices[(i+pitchers+pitchers)] = ("Pour\n");
+				count++;
+			}
 		}
 		
 		for(int i =0; i< choiceNum; i++) {
@@ -77,7 +81,7 @@ public class pitcherPuzzle {
 		int cap[] = new int[pitchers];
 		int amount[] = new int[pitchers];
 		int choiceNum = (int) (Math.pow(pitchers, 2) + pitchers);
-		String choices[] = new String[choiceNum];
+		String choices[] = new String[100];
 		
 		System.out.println("Enter the capacities of the " + pitchers + " on seperate lines (gallons)");
 		Scanner entry = new Scanner(System.in);

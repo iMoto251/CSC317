@@ -82,11 +82,11 @@ public class pitcherPuzzle {
 		
 		System.out.print("Enter the goal (gallons): ");
 		int goal = entry.nextInt();
-		
+		disp(amount, pitchers);
 		Scanner sc = new Scanner(System.in);
 		while (true) {
 		
-			disp(amount, pitchers);
+			
 			dispChoices(choiceNum, choices);
 			
 			System.out.println("Please select your move from the following choices:");

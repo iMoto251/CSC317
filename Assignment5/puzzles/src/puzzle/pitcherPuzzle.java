@@ -44,17 +44,18 @@ public class pitcherPuzzle {
 		for(int i=0;i<pitchers;i++) {
 			if(amount[i] != 0) {
 				choices[count] = ("Empty pitcher " + (i+1) + "\n");
-			} 
+				count++;
+			}
 		}
 		for(int i=0;i<pitchers;i++) {
 			if(amount[i] != 0 || amount[i] != cap[i]) {
-				choices[(i+pitchers+pitchers)] = ("Pour\n");
+				choices[count] = ("Pour " + (i+1) + " to " + (i+2) + "\n");
 				count++;
 			}
 		}
 		
-		for(int i =0; i< choiceNum; i++) {
-			if(i != choiceNum) {
+		for(int i =0; i< count; i++) {
+			if(i != count) {
 				System.out.print(choices[i]);
 			}			
 		}

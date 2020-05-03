@@ -30,22 +30,31 @@ public class pitcherPuzzle {
 		
 	}
 	
-	public static void dispChoices(int choiceNum, String[] choices) {
-		Scanner entry = new Scanner(System.in);
+	public static void dispChoices(int choiceNum, String[] choices, int cap[], int amount[], int pitchers) {
+		for(int i=0; i<choiceNum;i++)
+			choices[i] = "";
 		
-		for(int i =0; i< choiceNum; i++) {
-			if(i != choiceNum) {
-				System.out.print((i+1) +". ");
-				String gallons = entry.nextLine();
-				choices[i] = gallons;
-			}			
+		for(int i=0; i<choiceNum;i++) {
+			//choices[i] = "";
+			for(int j=0; j<pitchers;j++) {
+				if(amount[j] != cap[j]) {
+					choices[j] = ("Fill pitcher " + (j+1) + "\n");
+				}
+				else if(amount[j] != 0) {
+					choices[(j+pitchers)] = ("Empty pitcher " + (j+1) + "\n");	
+				}
+				else if(amount[j] != 0) {
+					choices[(j+pitchers)] = ("Pour");
+				}
+			}		
 		}
 		
 		for(int i =0; i< choiceNum; i++) {
 			if(i != choiceNum) {
-				System.out.println(choices[i]);
+				System.out.print(choices[i]);
 			}			
 		}
+		
 	}
 
 
@@ -85,9 +94,8 @@ public class pitcherPuzzle {
 		disp(amount, pitchers);
 		Scanner sc = new Scanner(System.in);
 		while (true) {
-		
 			
-			dispChoices(choiceNum, choices);
+			dispChoices(choiceNum, choices, cap, amount, pitchers);
 			
 			System.out.println("Please select your move from the following choices:");
 			

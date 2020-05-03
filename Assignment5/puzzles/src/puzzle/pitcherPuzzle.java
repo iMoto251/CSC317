@@ -26,8 +26,26 @@ public class pitcherPuzzle {
 		amount[position] = 0;
 	}
 	
-	public void pour() {
+	public static void pour() {
 		
+	}
+	
+	public static void dispChoices(int choiceNum, String[] choices) {
+		Scanner entry = new Scanner(System.in);
+		
+		for(int i =0; i< choiceNum; i++) {
+			if(i != choiceNum) {
+				System.out.print((i+1) +". ");
+				String gallons = entry.nextLine();
+				choices[i] = gallons;
+			}			
+		}
+		
+		for(int i =0; i< choiceNum; i++) {
+			if(i != choiceNum) {
+				System.out.println(choices[i]);
+			}			
+		}
 	}
 
 
@@ -49,6 +67,8 @@ public class pitcherPuzzle {
 		
 		int cap[] = new int[pitchers];
 		int amount[] = new int[pitchers];
+		int choiceNum = (int) (Math.pow(pitchers, 2) + pitchers);
+		String choices[] = new String[choiceNum];
 		
 		System.out.println("Enter the capacities of the " + pitchers + " on seperate lines (gallons)");
 		Scanner entry = new Scanner(System.in);
@@ -67,7 +87,10 @@ public class pitcherPuzzle {
 		while (true) {
 		
 			disp(amount, pitchers);
+			dispChoices(choiceNum, choices);
+			
 			System.out.println("Please select your move from the following choices:");
+			
 			String s=sc.next();
 			
 		

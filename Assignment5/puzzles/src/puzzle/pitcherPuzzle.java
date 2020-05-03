@@ -35,15 +35,15 @@ public class pitcherPuzzle {
 			choices[i] = "";
 		
 		for(int i=0; i<choiceNum;i++) {
-			//choices[i] = "";
 			for(int j=0; j<pitchers;j++) {
 				if(amount[j] != cap[j]) {
 					choices[j] = ("Fill pitcher " + (j+1) + "\n");
 				}
 				else if(amount[j] != 0) {
-					choices[(j+pitchers)] = ("Empty pitcher " + (j+1) + "\n");	
+					choices[(j+pitchers)] = ("Empty pitcher " + (j+1) + "\n");
+					
 				}
-				else if(amount[j] != 0) {
+				else if(amount[j] != 0 || amount[j] != cap[j]) {
 					choices[(j+pitchers)] = ("Pour");
 				}
 			}		

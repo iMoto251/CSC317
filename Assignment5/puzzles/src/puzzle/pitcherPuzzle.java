@@ -5,38 +5,50 @@ import java.util.*;
 
 public class pitcherPuzzle {
 	
-	public static void disp(int amount[]) {
+	public static void disp(int level[]) {
 		System.out.print("Current configuration: [");
-		for(int i = 0; i< amount.length; i++) {
-			if(i == amount.length - 1) {
-				System.out.print(amount[i]);
+		for(int i = 0; i< level.length; i++) {
+			if(i == level.length - 1) {
+				System.out.print(level[i]);
 			}
 			else {
-				System.out.print(amount[i] + ", ");
+				System.out.print(level[i] + ", ");
 			}
 		}
 		System.out.println("]");
 	}
 	
-	public static void fill(int cap, int position, int amount[]) {
-		amount[position] = cap;
+	public static void fill(int cap, int position, int level[]) {
+		level[position] = cap;
 	}
 	
-	public static void empty(int position, int amount[]) {
-		amount[position] = 0;
+	public static void empty(int position, int level[]) {
+		level[position] = 0;
 	}
 	
-	public static void pour() {
+	//cap 1 is the pitcher being poured into
+	//cap 2 is the pitcher being poured from
+	public static void pour(int cap1, int cap2, int position1, int position2, int level[]) {
+
+		if(cap1 < level[position2]) {
+			level[position2] = level[position2] - cap1;
+			fill(cap1, position1, level);
+		}
 		
+		if(cap1 > level[position2]) {
+			level[position1] = level[position1] + level[position2];
+			empty(position2, level);
+		}
+
 	}
 	
-	public static ArrayList<String> dispChoices(int[] cap, int[] amount) {
+	public static ArrayList<String> dispChoices(int[] cap, int[] level) {
 		ArrayList<String> choices = new ArrayList<String>();
 		
 		int inc = 0;
 		
 		for(int i = 0; i < cap.length; i++) {
-			if(amount[i] != cap[i]) {
+			if(level[i] != cap[i]) {
 				String arr1 = ("Fill pitcher " + (i+1) + "\n");
 				choices.add(arr1);
 				inc++;
@@ -44,7 +56,7 @@ public class pitcherPuzzle {
 		}
 		
 		for(int i=0;i<cap.length; i++) {
-			if (amount[i] != 0) {
+			if (level[i] != 0) {
 				String arr2 = ("Empty pitcher " + (i+1) + "\n");
 				choices.add(arr2);
 				inc++;
@@ -53,15 +65,14 @@ public class pitcherPuzzle {
 		
 		
 		for(int i=0; i<cap.length; i++) {
-			if(amount[i] != 0) {
+			if(level[i] != 0) {
 				for(int j = 0; j< cap.length;j++) {
-					if(amount[j] == 0) {
+					if(level[j] < cap[j]) {
 						String arr3 = ("Pour pitcher " + (i+1) + " to " + (j+1) + "\n");
 						choices.add(arr3);
 						inc++;
 					}
-				}
-				
+				}	
 			}
 		}
 		
@@ -72,23 +83,23 @@ public class pitcherPuzzle {
 	}
 
 
-	public static boolean check (int amount[], int pitchers, int goal) {
+	public static boolean check (int level[], int pitchers, int goal) {
 		for(int i = 0; i< pitchers; i++){
-			if(amount[i] == goal){
-				//System.out.print("Game won");
+			if(level[i] == goal){
 				return true;
 			}
 		}
 		return false;
 	}
+
 	
 	public static void game() {
 		
-		System.out.print("Enter the number of pitchers: ");
-		Scanner pitchNum = new Scanner(System.in);
+		System.out.print("Enter the number of pitchers: "); 
+		Scanner pitchNum = new Scanner(System.in); //Read in number of pitchers
 		int pitchers = pitchNum.nextInt();	
-		int cap[] = new int[pitchers];
-		int amount[] = new int[pitchers];
+		int cap[] = new int[pitchers]; //capacity of pitchers
+		int level[] = new int[pitchers]; //amounts in the pitchers
 		
 		System.out.println("Enter the capacities of the " + pitchers + " on seperate lines (gallons)");
 		Scanner entry = new Scanner(System.in);
@@ -102,33 +113,39 @@ public class pitcherPuzzle {
 		
 		System.out.print("Enter the goal (gallons): ");
 		int goal = entry.nextInt();
-		disp(amount);
+		disp(level);
 		Scanner sc = new Scanner(System.in);
 		while (true) {
 			
 			System.out.println("Please select your move from the following choices:");
-			ArrayList<String> choiceArray = dispChoices(cap, amount);
+			ArrayList<String> choiceArray = dispChoices(cap, level);
 			int s=sc.nextInt();
 					
 			String pick = choiceArray.get((s-1));
 			System.out.println(pick);
 			
 			char function = pick.charAt(0);
-			int pitcher = Character.getNumericValue(pick.charAt((pick.length()) - 2) - 1);
+			int pitcher1 = Character.getNumericValue(pick.charAt((pick.length()) - 2) - 1);
+			int pitcher2 = Character.getNumericValue(pick.charAt((pick.length()) - 7) - 1);
+
 			
-			//System.out.println(function + " " + pitcher);
+			//System.out.println(function + " " + pitcher1 + " " + pitcher2);
 		
 			if(function == 'F') {
-				fill(cap[pitcher],pitcher,amount);
+				fill(cap[pitcher1],pitcher1,level);
 			}
 			else if(function == 'E') {
-				empty(pitcher, amount);
+				empty(pitcher1, level);
+			}
+			else if(function == 'P')
+			{
+				pour(cap[pitcher1],cap[pitcher2],pitcher1,pitcher2,level);
 			}
 
 			
-			disp(amount);
+			disp(level);
 			
-			if(check(amount, pitchers, goal)){
+			if(check(level, pitchers, goal)){
 				System.out.println("Game won!");
 				break;
 			}

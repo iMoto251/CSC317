@@ -100,7 +100,42 @@ public class pitcherPuzzle {
 		int pitchers = pitchNum.nextInt();	
 		int cap[] = new int[pitchers]; //capacity of pitchers
 		int level[] = new int[pitchers]; //amounts in the pitchers
+		int y=0;
 		
+		System.out.println("Enter the capacities of the " + pitchers + " (gallons) [x,x,x,...,n]: ");
+		Scanner entry = new Scanner(System.in);
+		String input = entry.nextLine();
+		
+		//not working
+		if(input.charAt(0) == '[') {
+			for(int i=0;i<input.length();i++) {
+				if(input.charAt(i) == ']') {
+					break;
+				}
+				else if(Character.isDigit(input.charAt(i+1))) {
+					cap[y] = Character.getNumericValue(input.charAt(i+1));
+				}
+			}y++;
+			//System.out.println(input);
+		}
+		
+		for(int i=0;i<pitchers;i++)
+			System.out.println(cap[i]);
+			
+		
+		
+		/*
+		 if(input.charAt(0) == '[') {
+			for(int i=0;i<input.length();i++) {
+				if(input.charAt(i) == ',' && i!=input.length()-1) {
+					if(Character.isDigit(input.charAt(i+1))){
+						cap[i] = Character.getNumericValue(input.charAt(i+1));						
+					}
+				}
+			}
+		}
+		
+		//Working, but not how Banerjee wants it.
 		System.out.println("Enter the capacities of the " + pitchers + " on seperate lines (gallons)");
 		Scanner entry = new Scanner(System.in);
 		for(int i =0; i< pitchers; i++) {
@@ -110,6 +145,7 @@ public class pitcherPuzzle {
 				cap[i] = gallons;
 			}			
 		}
+		*/
 		
 		System.out.print("Enter the goal (gallons): ");
 		int goal = entry.nextInt();

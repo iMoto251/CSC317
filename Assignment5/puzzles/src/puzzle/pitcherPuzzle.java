@@ -5,14 +5,14 @@ import java.util.*;
 
 public class pitcherPuzzle {
 	
-	public static void disp(int arr[], int pCount) {
+	public static void disp(int amount[]) {
 		System.out.print("Current configuration: [");
-		for(int i = 0; i< pCount; i++) {
-			if(i == pCount - 1) {
-				System.out.print(arr[i]);
+		for(int i = 0; i< amount.length; i++) {
+			if(i == amount.length - 1) {
+				System.out.print(amount[i]);
 			}
 			else {
-				System.out.print(arr[i] + ", ");
+				System.out.print(amount[i] + ", ");
 			}
 		}
 		System.out.println("]");
@@ -30,36 +30,45 @@ public class pitcherPuzzle {
 		
 	}
 	
-	public static void dispChoices(int choiceNum, String[] choices, int cap[], int amount[], int pitchers) {
-		int count=0;
-		for(int i=0; i<choiceNum;i++)
-			choices[i] = "Empty\n";
+	public static ArrayList<String> dispChoices(int[] cap, int[] amount) {
+		ArrayList<String> choices = new ArrayList<String>();
 		
-		for(int i=0;i<pitchers;i++) {
+		int inc = 0;
+		
+		for(int i = 0; i < cap.length; i++) {
 			if(amount[i] != cap[i]) {
-				choices[count] = ("Fill pitcher " + (i+1) + "\n");
-				count++;
+				String arr1 = ("Fill pitcher " + (i+1) + "\n");
+				choices.add(arr1);
+				inc++;
 			}
 		}
-		for(int i=0;i<pitchers;i++) {
+		
+		for(int i=0;i<cap.length; i++) {
+			if (amount[i] != 0) {
+				String arr2 = ("Empty pitcher " + (i+1) + "\n");
+				choices.add(arr2);
+				inc++;
+			}
+		}
+		
+		
+		for(int i=0; i<cap.length; i++) {
 			if(amount[i] != 0) {
-				choices[count] = ("Empty pitcher " + (i+1) + "\n");
-				count++;
-			}
-		}
-		for(int i=0;i<pitchers;i++) {
-			if(amount[i] != 0 || amount[i] != cap[i]) {
-				choices[count] = ("Pour " + (i+1) + " to " + (i+2) + "\n");
-				count++;
+				for(int j = 0; j< cap.length;j++) {
+					if(amount[j] == 0) {
+						String arr3 = ("Pour pitcher " + (i+1) + " to " + (j+1) + "\n");
+						choices.add(arr3);
+						inc++;
+					}
+				}
+				
 			}
 		}
 		
-		for(int i =0; i< count; i++) {
-			if(i != count) {
-				System.out.print(choices[i]);
-			}			
+		for(int i =0; i<inc; i++) {
+				System.out.print((i+1) + ". " + choices.get(i));		
 		}
-		
+		return choices;
 	}
 
 
@@ -77,12 +86,9 @@ public class pitcherPuzzle {
 		
 		System.out.print("Enter the number of pitchers: ");
 		Scanner pitchNum = new Scanner(System.in);
-		int pitchers = pitchNum.nextInt();
-		
+		int pitchers = pitchNum.nextInt();	
 		int cap[] = new int[pitchers];
 		int amount[] = new int[pitchers];
-		int choiceNum = (int) (Math.pow(pitchers, 2) + pitchers);
-		String choices[] = new String[100];
 		
 		System.out.println("Enter the capacities of the " + pitchers + " on seperate lines (gallons)");
 		Scanner entry = new Scanner(System.in);
@@ -96,41 +102,31 @@ public class pitcherPuzzle {
 		
 		System.out.print("Enter the goal (gallons): ");
 		int goal = entry.nextInt();
-		disp(amount, pitchers);
+		disp(amount);
 		Scanner sc = new Scanner(System.in);
 		while (true) {
 			
-			dispChoices(choiceNum, choices, cap, amount, pitchers);
-			
 			System.out.println("Please select your move from the following choices:");
+			ArrayList<String> choiceArray = dispChoices(cap, amount);
+			int s=sc.nextInt();
+					
+			String pick = choiceArray.get((s-1));
+			System.out.println(pick);
 			
-			String s=sc.next();
+			char function = pick.charAt(0);
+			int pitcher = Character.getNumericValue(pick.charAt((pick.length()) - 2) - 1);
 			
+			//System.out.println(function + " " + pitcher);
 		
-			if(s.equals("1"))
-			{
-				fill(cap[1], 1, amount);
+			if(function == 'F') {
+				fill(cap[pitcher],pitcher,amount);
 			}
-		
-			else if(s.equals("2"))
-			{
-				empty(1, amount);
+			else if(function == 'E') {
+				empty(pitcher, amount);
 			}
-		
-			else if(s.equals("3"))
-			{
-				
-			}
-		
-			else if (s.equals("4"))
-			{
-				
-			}
+
 			
-			else
-				System.out.println("Illegal Move. Try again!");
-			
-			disp(amount, pitchers);
+			disp(amount);
 			
 			if(check(amount, pitchers, goal)){
 				System.out.println("Game won!");

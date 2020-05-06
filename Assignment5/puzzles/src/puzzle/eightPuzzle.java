@@ -77,7 +77,6 @@ public class eightPuzzle {
 		disp(maze);
 		// Games begins
 		Scanner sc = new Scanner(System.in);
-		///String s="";
 		while (true) {
 		
 			System.out.println("Enter your move:");
@@ -91,7 +90,6 @@ public class eightPuzzle {
 				System.out.println("4. Right");
 			String s=sc.next();
 			
-		
 			// This checks whether the blank cell is  already at the top or not. If yes then it cannot be moved further
 			if(s.equals("up") || s.equals("Up") || s.equals("1") && x>0)
 			{
@@ -137,9 +135,5 @@ public class eightPuzzle {
 		sc.close();
 		
 	
-	}
-	
-	public static void main(String args[]){
-		
 	}
 }

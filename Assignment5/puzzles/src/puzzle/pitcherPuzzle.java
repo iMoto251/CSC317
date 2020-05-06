@@ -1,7 +1,6 @@
 package puzzle;
 
 import java.util.*;
-//import java.io.*;
 
 public class pitcherPuzzle {
 	
@@ -31,11 +30,12 @@ public class pitcherPuzzle {
 	public static void pour(int cap1, int cap2, int position1, int position2, int level[]) {
 
 		if(cap1 < level[position2]) {
+			System.out.println("Test1");
 			level[position2] = level[position2] - cap1;
 			fill(cap1, position1, level);
 		}
-		
-		if(cap1 > level[position2]) {
+		else if(cap1 > level[position2]) {
+			System.out.println("Test2");
 			level[position1] = level[position1] + level[position2];
 			empty(position2, level);
 		}
